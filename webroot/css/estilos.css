@@ -1,0 +1,238 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+ol, ul {
+    list-style: none;
+}
+
+        /* Basic */
+@media screen and (max-width: 480px) {
+    html, body {
+        min-width: 320px;
+    }
+}
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+        /* Type */
+body {
+    color: black;
+    font-family: "Arial";
+    font-size: 12pt;
+    font-weight: 300;
+    letter-spacing: 0.025em;
+    line-height: 1.65;
+    background-color: #FFFFFF;
+}
+a {
+    text-decoration: none;
+}
+
+        /* Header */
+#header {
+    display: flex;
+    font-weight: 600;
+    height: 6em;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #FFFFFF;
+    margin-bottom: 30px;
+}               
+        /*ICONOS*/             
+.icono_link:hover{
+    filter: drop-shadow(2px 2px 2px #6D6D6D);
+}
+.icono_logo:hover{
+    filter: drop-shadow(2px 2px 2px #6D6D6D);
+}
+.icono_git:hover{
+    filter: drop-shadow(2px 2px 1px #6D6D6D); /*sombra png*/
+}
+.icono_atras:hover{
+    filter: drop-shadow(2px 2px 1px #6D6D6D); /*sombra png*/
+}
+.icono_atras{
+    position: relative;
+    float: right;
+}
+img:nth-child(1){
+    flex: 0 3 auto;
+}
+img:nth-child(2){
+    flex: 0 2 auto;
+}
+img:nth-child(3){
+    flex: 0 1 auto;
+}
+/*BOTON*/
+#ej{
+    text-align: center;
+}
+#cd{
+    text-align: center;
+}
+    /* CONTENIDO */
+#cont{
+    padding: 5%;
+}
+
+        /* Footer */
+.copyright {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-family: 'Caveat', cursive;
+    padding: 1.5em;
+    border-top: 4px solid  #443979;
+    background-color: #FFFFFF;
+    font-size: 17pt;
+}  
+
+.major h3 {
+    font-family: "ZCOOL KuaiLe", cursive;
+}
+
+        /* NAV*/
+nav {
+    font-family: "ZCOOL KuaiLe", cursive;
+    font-size: 17pt;
+}
+nav li a{ 
+   color: #8D82C4;
+}
+nav li a:hover{
+    color: #443979
+}
+
+        /* Tiles */
+.tiles {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 0 !important;
+}
+        
+        /* Table */
+
+@media screen and (max-width: 736px) { /*P*/
+/* NAV */
+    nav {
+        background-color: #FFFFFF;
+        width: 100%;  
+    }
+     nav ul{
+        margin-top: 0%;
+        margin-right: auto;
+        margin-bottom: 0px;
+        margin-left: auto;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 15px;
+        padding-left: 0px;
+        width: 100%;
+    }
+    nav li{
+        float: left;
+        margin-right: auto;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-align: center;
+        width: 25%;
+    }
+/* Tiles */
+    .tiles article {
+        width: 100%;
+    }
+    .tiles article h3 {
+        font-size: 1.5em;
+        color: #443979;
+    }
+    .tiles article p {
+        font-size: 0.70em;
+    }
+    .tiles article header.major {
+        padding: 1em 1em 1em 3em ;
+        max-height: 8em;
+        background-color: #FFFFFF; 
+        border-bottom: 4px solid  #443979;
+    }
+ /* Tabla */
+ table {
+        width: 100%;
+        margin-top: 20px;
+        margin-left: 10%;
+        font-family: "Arial";
+        color: black;
+    }
+    th{
+        font-size:1em ;
+        text-align: center;
+    }
+    td{
+        font-size:1em ;
+        text-align: left;
+    }
+}
+        
+@media screen and (min-width: 740px) {
+/*Nav*/ 
+    nav {
+        width: 100%;
+        float: left;
+        padding-bottom: 15px;
+    }
+     nav ul{
+        margin:0;
+    }
+    nav ul li {
+	list-style: none;
+	float: left;
+	margin-right: auto;
+	margin-top: 0px;
+	font-family: "ZCOOL KuaiLe", cursive;
+	font-weight: bold;
+	letter-spacing: 1px;
+	margin-left: auto;
+	text-align: center;
+	width: 25%;
+	transition: all 0.3s linear;
+}
+/* Tiles */
+    .tiles article {
+        width: 100%;
+    }
+    .tiles article h3 {
+        font-size: 1.75em;
+        color: #443979;
+    }
+    .tiles article header.major {
+        padding: 1em 1em 1em 4em ;
+        max-height: 8em;
+        border-bottom: 4px solid  #443979;
+    }
+/* Tabla */
+    table {
+        width: 100%;
+        padding: 10px;
+        margin-top: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 20px;
+        font-family: "Arial";
+        color: black;
+    }
+    td{
+        font-size:1em ;
+        text-align: left;
+    }
+    th{
+        font-size:1em ;
+        text-align: center;
+    }
+}

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Departamentos>
+  <Departamento>
+    <CodDepartamento>AAA</CodDepartamento>
+    <DescDepartamento>Departamento de Aaa</DescDepartamento>
+    <FechaBaja/>
+    <VolumenNegocio>555</VolumenNegocio>
+  </Departamento>
+  <Departamento>
+    <CodDepartamento>COC</CodDepartamento>
+    <DescDepartamento>Departamento de cocina</DescDepartamento>
+    <FechaBaja/>
+    <VolumenNegocio>4</VolumenNegocio>
+  </Departamento>
+  <Departamento>
+    <CodDepartamento>CON</CodDepartamento>
+    <DescDepartamento>Departamento de contabilidad</DescDepartamento>
+    <FechaBaja/>
+    <VolumenNegocio>3</VolumenNegocio>
+  </Departamento>
+  <Departamento>
+    <CodDepartamento>III</CodDepartamento>
+    <DescDepartamento>Transacción del I</DescDepartamento>
+    <FechaBaja/>
+    <VolumenNegocio>1</VolumenNegocio>
+  </Departamento>
+  <Departamento>
+    <CodDepartamento>INF</CodDepartamento>
+    <DescDepartamento>Departamento de informatica</DescDepartamento>
+    <FechaBaja/>
+    <VolumenNegocio>1</VolumenNegocio>
+  </Departamento>
+  <Departamento>
+    <CodDepartamento>MAT</CodDepartamento>
+    <DescDepartamento>Departamento de matematicas</DescDepartamento>
+    <FechaBaja/>
+    <VolumenNegocio>6</VolumenNegocio>
+  </Departamento>
+  <Departamento>
+    <CodDepartamento>MEC</CodDepartamento>
+    <DescDepartamento>Departamento de mecanica</DescDepartamento>
+    <FechaBaja/>
+    <VolumenNegocio>5</VolumenNegocio>
+  </Departamento>
+  <Departamento>
+    <CodDepartamento>NAJ</CodDepartamento>
+    <DescDepartamento>Nerea Álvarez Justel</DescDepartamento>
+    <FechaBaja/>
+    <VolumenNegocio>24</VolumenNegocio>
+  </Departamento>
+  <Departamento>
+    <CodDepartamento>OOO</CodDepartamento>
+    <DescDepartamento>Transacción del O</DescDepartamento>
+    <FechaBaja/>
+    <VolumenNegocio>8</VolumenNegocio>
+  </Departamento>
+  <Departamento>
+    <CodDepartamento>UUU</CodDepartamento>
+    <DescDepartamento>Transacción del U</DescDepartamento>
+    <FechaBaja/>
+    <VolumenNegocio>4</VolumenNegocio>
+  </Departamento>
+  <Departamento>
+    <CodDepartamento>VEN</CodDepartamento>
+    <DescDepartamento>Departamento de ventas</DescDepartamento>
+    <FechaBaja/>
+    <VolumenNegocio>2</VolumenNegocio>
+  </Departamento>
+</Departamentos>
