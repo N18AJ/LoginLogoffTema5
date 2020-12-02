@@ -4,7 +4,7 @@
         require '../core/libreriaValidacion.php'; //Importamos la libreria de validacion
                 
         $entradaOK = true; //Inicializamos una variable que nos ayudara a controlar si todo esta correcto
-        session_start();  //te inicia la sesion
+        
 
         //Inicializamos un array que se encargara de recoger los errores(Campos vacios)
         $aErrores = [
@@ -58,10 +58,11 @@
              if ($resultadoSQL->rowCount() == 1) {
                     //$_SESSION['usuarioDAW203AppLoginLogoff'] = $user;
                     $aObjetos = $resultadoSQL->fetchObject();//transforma los valores en objetos y me permite seleccionarlos                
+                    session_start();  //te inicia la sesion
                     $_SESSION['usuarioDAW212DBProyectoTema5'] = $aObjetos->T01_CodUsuario;
-                    $_SESSION['descUsuario212'] = $aObjetos->T01_DescUsuario;
+                    //$_SESSION['descUsuario212'] = $aObjetos->T01_DescUsuario;
                     $_SESSION['ultimaConexion212'] = $aObjetos->T01_FechaHoraUltimaConexion;
-                    $_SESSION['numConexiones212'] = $aObjetos->T01_NumConexiones+1;
+                    //$_SESSION['numConexiones212'] = $aObjetos->T01_NumConexiones+1;
                     
                     $fechaSQL = "UPDATE T01_Usuario SET T01_FechaHoraUltimaConexion = " . time() . " WHERE T01_CodUsuario = :codigo;";
                     $actualizarFechaSQL = $miBD->prepare($fechaSQL);
@@ -82,9 +83,25 @@
                     //finalmente, sales de la base de datos cerrando tambien el usuario
                 } finally {
                     unset($miBD);
+                }
             }
-            } else {
-           ?>
+if (isset($_GET['idioma'])) {
+    if ($_GET['idioma'] === "eng") {
+        setcookie('idioma', "eng", time() + 7 * 24 * 60 * 60); //La Cookie tiene un periodo de vida de 7 días
+        header("Location: login.php");
+    }
+    if ($_GET['idioma'] === "cas") {
+        setcookie('idioma', "cas", time() + 7 * 24 * 60 * 60); //La Cookie tiene un periodo de vida de 7 días
+        header("Location: login.php");
+    }
+}
+if (!isset($_COOKIE['idioma'])) {
+    setcookie('idioma', "cas", time() + 7 * 24 * 60 * 60); //La Cookie tiene un periodo de vida de 7 días
+    header("Location: login.php");
+}
+           
+else{
+ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -120,19 +137,6 @@
                 border-radius: 10px;
                 border: 2px solid #18B618;
             }
-            #botonCancelar{
-                margin:20px;
-                text-align: center;
-                color: #E72727; 
-                width: 120px; 
-                height: 40px; 
-                font-size: 10pt;
-                border-radius: 10px;
-                border: 2px solid #E72727;
-            }
-            .error{
-                color:#E72727;
-            }
         </style>
     </head>
 
@@ -160,40 +164,50 @@
                           @since: 30/11/2020 
                           @description: LoginLogoff - LOGIN.
                          -->
-                        
+                         <div id="idiomas">
+                            <nav class="idioma">
+                                  <a href="<?php echo $_SERVER['PHP_SELF'] ?>?idioma=cas">Castellano</a>
+                                  <a href="<?php echo $_SERVER['PHP_SELF'] ?>?idioma=eng">English</a>
+                            </nav>
+                             
+                         </div>
+                         
                         <form style="text-align: center;" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                             <fieldset>
-                                <legend><h2>Introduce su nombre y contraseña</h2></legend>
+                                <?php
+                                    if (isset($_COOKIE['idioma'])) {
+                                        if ($_COOKIE['idioma'] === "eng") {
+                                            echo '<a href="#" class="seleccionado"><legend><h2>Name and Password</h2></legend></a>';
+                                        } else if ($_COOKIE['idioma'] === "cas") {
+                                            echo '<a href="#" class="seleccionado"><legend><h2>Nombre y Contraseña</h2></legend></a>';
+                                        }
+                                    } else if ($_COOKIE['idioma'] === "cas") {
+                                        echo '<a href="#" class="seleccionado"><legend><h2>Nombre y Contraseña</h2></legend></a>';
+                                    }
+                                ?>
                                         </br>
 
                                 <div class="obligatorio">
                                     Nombre: 
                                     <input type="text" name="codUsuario" placeholder="Nombre" value="<?php if($aErrores['codUsuario'] == NULL && isset($_POST['codUsuario'])){ echo $_POST['codUsuario'];} ?>"><br> <!--//Si el valor es bueno, lo escribe en el campo-->
-                                    <?php if ($aErrores['codUsuario'] != NULL) { ?>
-                                    <div class="error">
-                                        <?php echo $aErrores['codUsuario']; //Mensaje de error que tiene el array aErrores   ?>
-                                    </div>   
+                                    <?php if ($aErrores['codUsuario'] != NULL) { ?>  
                                 <?php } ?>                
                                 </div>
                                 </br>
                                 <div class="obligatorio">
                                     Contraseña: 
                                     <input type="password" name="password" placeholder="Contraseña" value="<?php if($aErrores['password'] == NULL && isset($_POST['password'])){ echo $_POST['password'];} ?>"><br> <!--//Si el valor es bueno, lo escribe en el campo-->
-                                    <?php if ($aErrores['password'] != NULL) { ?>
-                                    <div class="error">
-                                        <?php echo $aErrores['password']; //Mensaje de error que tiene el array aErrores   ?>
-                                    </div>   
+                                    <?php if ($aErrores['password'] != NULL) { ?>  
                                 <?php } ?>                
                                 </div>
                                 <br>
 
                                 <div class="obligatorio">               
-                                <input type="submit" id="botonAceptar" name="enviar" value="INICIAR SESION">    
-                                <input type="button" id="botonCancelar" value="CANCELAR" onclick="location = '../../../indexProyectoDWES.html'">
+                                <input type="submit" id="botonAceptar" name="enviar" value="INICIAR SESION">
                                 </div>
                             </fieldset>
                         </form>
-                <?php } ?>   
+                    <?php } ?> 
                    </div> 
                 </article>     
         </section>

@@ -13,6 +13,35 @@ if (isset($_POST["cerrar"])) {
     session_destroy();
     header('location: login.php');
 }
+
+//datos para la conexion de la base de datos
+        include ("../config/confDB.php");
+        require '../core/libreriaValidacion.php'; //Importamos la libreria de validacion
+        
+$entradaOK = true; //Creamos e inicializamos $entradaOK a true
+
+try { // Bloque de código que puede tener excepciones en el objeto PDO
+    $miBD = new PDO(HOST,USER, PASSWD);
+                            // set the PDO error mode to exception
+                                        //PDO::ERRMODE_EXCEPTION - Además de establecer el código de error, PDO lanzará una excepción PDOException y establecerá sus propiedades para luego poder reflejar el error y su información.
+    $miBD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $consultaSQL = "SELECT T01_NumConexiones, T01_DescUsuario FROM T01_Usuario WHERE T01_CodUsuario=:codigo";
+    $resultadoSQL = $miBD->prepare($consultaSQL); // prepara la consulta
+    $resultadoSQL->bindParam(':codigo', $_SESSION['usuarioDAW212DBProyectoTema5']);
+    $resultadoSQL->execute(); // ejecuto la consulta pasando los parametros del array de parametros
+
+    $aObjetos = $resultadoSQL->fetchObject();
+    $numConexiones = $aObjetos->T01_NumConexiones;
+    $descUsuario = $aObjetos->T01_DescUsuario;
+    
+} catch (PDOException $mensajeError) {
+    echo "<h4>Se ha producido un error. Disculpe las molestias</h4>";
+} finally { // codigo que se ejecuta haya o no errores
+    unset($miBD); // destruyo la variable 
+}
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -79,14 +108,13 @@ if (isset($_POST["cerrar"])) {
                               @description: LoginLogoff - PROGRAMA.
                              -->
                         <h3>Usuario aceptado</h3>
-                        <h3>¡Bienvenido <?php echo $_SESSION['usuarioDAW212DBProyectoTema5']; ?>!</h3>
-                        <h3>Descripción Usuario: <?php echo $_SESSION['descUsuario212']; ?></h3>
+                        <h3>¡Bienvenido <?php echo $descUsuario; ?>!</h3>
                        <?php
                         if ($_SESSION['ultimaConexion212'] === null) {
                             echo "<h3>Esta es la primera vez que te conectas.</h3>";
                         } else {
                             ?>
-                            <h3>Usted se ha conectado <?php echo $_SESSION['numConexiones212'] . " veces"; ?></h3>
+                            <h3>Usted se ha conectado <?php echo $numConexiones . " veces"; ?></h3>
                             <h3>Se ha conectado por última vez el día <?php echo date('d/m/Y', $_SESSION['ultimaConexion212']); ?> a las <?php echo date('H:i:s', $_SESSION['ultimaConexion212']); ?></h3>
                         <?php } ?>
                         <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
