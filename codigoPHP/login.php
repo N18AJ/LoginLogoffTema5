@@ -86,20 +86,23 @@
                 }
             }
 if (isset($_GET['idioma'])) {
-    if ($_GET['idioma'] === "eng") {
-        setcookie('idioma', "eng", time() + 7 * 24 * 60 * 60); //La Cookie tiene un periodo de vida de 7 días
+    if ($_GET['idioma'] === "en") {
+        setcookie('idioma', "en", time() + 7 * 24 * 60 * 60); //La Cookie tiene un periodo de vida de 7 días
         header("Location: login.php");
     }
-    if ($_GET['idioma'] === "cas") {
-        setcookie('idioma', "cas", time() + 7 * 24 * 60 * 60); //La Cookie tiene un periodo de vida de 7 días
+     if ($_GET['idioma'] === "fr") {
+        setcookie('idioma', "fr", time() + 7 * 24 * 60 * 60); //La Cookie tiene un periodo de vida de 7 días
+        header("Location: login.php");
+    }
+    if ($_GET['idioma'] === "es") {
+        setcookie('idioma', "es", time() + 7 * 24 * 60 * 60); //La Cookie tiene un periodo de vida de 7 días
         header("Location: login.php");
     }
 }
 if (!isset($_COOKIE['idioma'])) {
-    setcookie('idioma', "cas", time() + 7 * 24 * 60 * 60); //La Cookie tiene un periodo de vida de 7 días
+    setcookie('idioma', "es", time() + 7 * 24 * 60 * 60); //La Cookie tiene un periodo de vida de 7 días
     header("Location: login.php");
-}
-           
+}           
 else{
  ?>
 <!DOCTYPE html>
@@ -166,8 +169,9 @@ else{
                          -->
                          <div id="idiomas">
                             <nav class="idioma">
-                                  <a href="<?php echo $_SERVER['PHP_SELF'] ?>?idioma=cas">Castellano</a>
-                                  <a href="<?php echo $_SERVER['PHP_SELF'] ?>?idioma=eng">English</a>
+                                <a href="<?php echo $_SERVER['PHP_SELF'] ?>?idioma=es"><img src="../webroot/media/images/espanol.png" alt="Español" width="35" class="icono_es"/></a>
+                                <a href="<?php echo $_SERVER['PHP_SELF'] ?>?idioma=en"><img src="../webroot/media/images/ingles.png" alt="Inglés" width="35" class="icono_en"/></a>
+                                <a href="<?php echo $_SERVER['PHP_SELF'] ?>?idioma=fr"><img src="../webroot/media/images/frances.png" alt="Inglés" width="35" class="icono_fr"/></a>
                             </nav>
                              
                          </div>
@@ -176,35 +180,89 @@ else{
                             <fieldset>
                                 <?php
                                     if (isset($_COOKIE['idioma'])) {
-                                        if ($_COOKIE['idioma'] === "eng") {
-                                            echo '<a href="#" class="seleccionado"><legend><h2>Name and Password</h2></legend></a>';
-                                        } else if ($_COOKIE['idioma'] === "cas") {
-                                            echo '<a href="#" class="seleccionado"><legend><h2>Nombre y Contraseña</h2></legend></a>';
-                                        }
-                                    } else if ($_COOKIE['idioma'] === "cas") {
-                                        echo '<a href="#" class="seleccionado"><legend><h2>Nombre y Contraseña</h2></legend></a>';
-                                    }
-                                ?>
+                    //  -----  IDIOMA FRANCES INGLÉS
+                                        if ($_COOKIE['idioma'] === "en") {
+                                            echo '<a href="#" class="seleccionado"><legend><h2>Name and password</h2></legend></a>';
+                                ?>        
+                                            </br>
+                                        <div class="obligatorio">
+                                            Name: 
+                                            <input type="text" name="codUsuario" placeholder="Name" value="<?php if($aErrores['codUsuario'] == NULL && isset($_POST['codUsuario'])){ echo $_POST['codUsuario'];} ?>"><br> <!--//Si el valor es bueno, lo escribe en el campo-->
+                                            <?php if ($aErrores['codUsuario'] != NULL) { ?>  
+                                        <?php } ?>                
+                                        </div>
                                         </br>
+                                        <div class="obligatorio">
+                                            Password: 
+                                            <input type="password" name="password" placeholder="Password" value="<?php if($aErrores['password'] == NULL && isset($_POST['password'])){ echo $_POST['password'];} ?>"><br> <!--//Si el valor es bueno, lo escribe en el campo-->
+                                            <?php if ($aErrores['password'] != NULL) { ?>  
+                                        <?php } ?>                
+                                        </div>
+                                        <br>
 
-                                <div class="obligatorio">
-                                    Nombre: 
-                                    <input type="text" name="codUsuario" placeholder="Nombre" value="<?php if($aErrores['codUsuario'] == NULL && isset($_POST['codUsuario'])){ echo $_POST['codUsuario'];} ?>"><br> <!--//Si el valor es bueno, lo escribe en el campo-->
-                                    <?php if ($aErrores['codUsuario'] != NULL) { ?>  
-                                <?php } ?>                
-                                </div>
-                                </br>
-                                <div class="obligatorio">
-                                    Contraseña: 
-                                    <input type="password" name="password" placeholder="Contraseña" value="<?php if($aErrores['password'] == NULL && isset($_POST['password'])){ echo $_POST['password'];} ?>"><br> <!--//Si el valor es bueno, lo escribe en el campo-->
-                                    <?php if ($aErrores['password'] != NULL) { ?>  
-                                <?php } ?>                
-                                </div>
-                                <br>
+                                        <div class="obligatorio">               
+                                        <input type="submit" id="botonAceptar" name="enviar" value="LOG IN">
+                                        </div>        
+                                        
+                                <?php    
+                                        }
+                    //  -----  IDIOMA FRANCES
+                                        if ($_COOKIE['idioma'] === "fr") {
+                                            echo '<a href="#" class="seleccionado"><legend><h2>Nom et mot de passe</h2></legend></a>';  
+                                ?>        
+                                            </br>
 
-                                <div class="obligatorio">               
-                                <input type="submit" id="botonAceptar" name="enviar" value="INICIAR SESION">
-                                </div>
+                                        <div class="obligatorio">
+                                            Non: 
+                                            <input type="text" name="codUsuario" placeholder="Non" value="<?php if($aErrores['codUsuario'] == NULL && isset($_POST['codUsuario'])){ echo $_POST['codUsuario'];} ?>"><br> <!--//Si el valor es bueno, lo escribe en el campo-->
+                                            <?php if ($aErrores['codUsuario'] != NULL) { ?>  
+                                        <?php } ?>                
+                                        </div>
+                                        </br>
+                                        <div class="obligatorio">
+                                            Mot de passe: 
+                                            <input type="password" name="password" placeholder="Mot de passe" value="<?php if($aErrores['password'] == NULL && isset($_POST['password'])){ echo $_POST['password'];} ?>"><br> <!--//Si el valor es bueno, lo escribe en el campo-->
+                                            <?php if ($aErrores['password'] != NULL) { ?>  
+                                        <?php } ?>                
+                                        </div>
+                                        <br>
+
+                                        <div class="obligatorio">               
+                                        <input type="submit" id="botonAceptar" name="enviar" value="S'IDENTIFIER">
+                                        </div>    
+                                        
+                                <?php            
+                                        }  
+                    //  -----  IDIOMA ESPAÑOL
+                                        if ($_COOKIE['idioma'] === "es") {
+                                                echo '<a href="#" class="seleccionado"><legend><h2>Nombre y contraseña</h2></legend></a>';
+                                ?>        
+                                                </br>
+
+                                            <div class="obligatorio">
+                                                Nombre: 
+                                                <input type="text" name="codUsuario" placeholder="Nombre" value="<?php if($aErrores['codUsuario'] == NULL && isset($_POST['codUsuario'])){ echo $_POST['codUsuario'];} ?>"><br> <!--//Si el valor es bueno, lo escribe en el campo-->
+                                                <?php if ($aErrores['codUsuario'] != NULL) { ?>  
+                                            <?php } ?>                
+                                            </div>
+                                            </br>
+                                            <div class="obligatorio">
+                                               Contraseña: 
+                                                <input type="password" name="password" placeholder="Contraseña" value="<?php if($aErrores['password'] == NULL && isset($_POST['password'])){ echo $_POST['password'];} ?>"><br> <!--//Si el valor es bueno, lo escribe en el campo-->
+                                                <?php if ($aErrores['password'] != NULL) { ?>  
+                                            <?php } ?>                
+                                            </div>
+                                            <br>
+
+                                            <div class="obligatorio">               
+                                            <input type="submit" id="botonAceptar" name="enviar" value="INICIAR SESION">
+                                            </div>        
+                                 <?php                       
+                                            }
+                                    } else if ($_COOKIE['idioma'] === "es"){
+                                        echo '<a href="#" class="seleccionado"><legend><h2>Elija un idioma</h2></legend></a>';
+                                    }
+                                ?>                 
                             </fieldset>
                         </form>
                     <?php } ?> 

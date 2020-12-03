@@ -104,26 +104,84 @@ try { // Bloque de código que puede tener excepciones en el objeto PDO
                     <div id="cont" style="text-align: center;">
                             <!-- 
                             @author: Nerea Álvarez Justel
-                              @since: 30/11/2020 
+                              @since: 02/12/2020 
                               @description: LoginLogoff - PROGRAMA.
                              -->
-                        <h3>Usuario aceptado</h3>
-                        <h3>¡Bienvenido <?php echo $descUsuario; ?>!</h3>
-                       <?php
-                        if ($_SESSION['ultimaConexion212'] === null) {
-                            echo "<h3>Esta es la primera vez que te conectas.</h3>";
-                        } else {
+                             
+                             
+                         <?php
+                                if (isset($_COOKIE['idioma'])) {
+                //  -----  IDIOMA FRANCES INGLÉS
+                                    if ($_COOKIE['idioma'] === "en") {
+                            ?>        
+                                    <h3>User accepted</h3>
+                                    <h3>¡Welcome <?php echo $descUsuario; ?>!</h3>
+                                   <?php
+                                    if ($_SESSION['ultimaConexion212'] === null) {
+                                        echo "<h3>This is the first time you connect.</h3>";
+                                    } else {
+                                        ?>
+                                        <h3>You have connected <?php echo $numConexiones . " times"; ?></h3>
+                                        <h3>Last logged in on the day <?php echo date('d/m/Y', $_SESSION['ultimaConexion212']); ?> at <?php echo date('H:i:s', $_SESSION['ultimaConexion212']); ?></h3>
+                                    <?php } ?>
+                                    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+                                        <div class="obligatorio">
+
+                                            <a href="detalle.php"><input type="button" id="botonAceptar" name="detalle" value="Detail"></a>
+                                            <a href="login.php"><input type="button" id="botonCancelar" name="cerrar" value="Log Out"></a>
+                                        </div>
+                                    </form>          
+                            <?php    
+                //  -----  IDIOMA FRANCES
+                                    } else if ($_COOKIE['idioma'] === "fr") { 
+                            ?>        
+                                    <h3>Utilisateur accepté</h3>
+                                    <h3>¡Bienvenue <?php echo $descUsuario; ?>!</h3>
+                                   <?php
+                                    if ($_SESSION['ultimaConexion212'] === null) {
+                                        echo "<h3>C'est la première fois que vous vous connectez.</h3>";
+                                    } else {
+                                        ?>
+                                        <h3>Vous vous êtes connecté <?php echo $numConexiones . " fois"; ?></h3>
+                                        <h3>Dernière connexion le jour <?php echo date('d/m/Y', $_SESSION['ultimaConexion212']); ?> à <?php echo date('H:i:s', $_SESSION['ultimaConexion212']); ?></h3>
+                                    <?php } ?>
+                                    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+                                        <div class="obligatorio">
+
+                                            <a href="detalle.php"><input type="button" id="botonAceptar" name="detalle" value="Detail"></a>
+                                            <a href="login.php"><input type="button" id="botonCancelar" name="cerrar" value="Fermer session"></a>
+                                        </div>
+                                    </form>             
+                            <?php            
+
+                //  -----  IDIOMA ESPAÑOL
+                                        }else if ($_COOKIE['idioma'] === "es") {
+                            ?>        
+                                       <h3>Usuario aceptado</h3>
+                                        <h3>¡Bienvenido <?php echo $descUsuario; ?>!</h3>
+                                       <?php
+                                        if ($_SESSION['ultimaConexion212'] === null) {
+                                            echo "<h3>Esta es la primera vez que te conectas.</h3>";
+                                        } else {
+                                            ?>
+                                            <h3>Usted se ha conectado <?php echo $numConexiones . " veces"; ?></h3>
+                                            <h3>Se ha conectado por última vez el día <?php echo date('d/m/Y', $_SESSION['ultimaConexion212']); ?> a las <?php echo date('H:i:s', $_SESSION['ultimaConexion212']); ?></h3>
+                                        <?php } ?>
+                                        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+                                            <div class="obligatorio">
+
+                                                <a href="detalle.php"><input type="button" id="botonAceptar" name="detalle" value="Detalle"></a>
+                                                <a href="login.php"><input type="button" id="botonCancelar" name="cerrar" value="Cerrar sesion"></a>
+                                            </div>
+                                        </form>        
+                             <?php                       
+                                        }
+                                } else if ($_COOKIE['idioma'] === "es") {
+                                }
                             ?>
-                            <h3>Usted se ha conectado <?php echo $numConexiones . " veces"; ?></h3>
-                            <h3>Se ha conectado por última vez el día <?php echo date('d/m/Y', $_SESSION['ultimaConexion212']); ?> a las <?php echo date('H:i:s', $_SESSION['ultimaConexion212']); ?></h3>
-                        <?php } ?>
-                        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
-                            <div class="obligatorio">
-                                
-                                <a href="detalle.php"><input type="button" id="botonAceptar" name="detalle" value="Detalle"></a>
-                                <a href="login.php"><input type="button" id="botonCancelar" name="cerrar" value="Cerrar sesion"></a>
-                            </div>
-                        </form>
+                                            
+                                            
+                        
                     </div> 
                 </article>
             </section>
