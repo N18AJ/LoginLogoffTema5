@@ -9,6 +9,11 @@ if (isset($_POST["detalle"])) {
     exit;
 }
 
+if (isset($_POST["editar"])) {
+    header('Location: editarPerfil.php');
+    exit;
+}
+
 if (isset($_POST["cerrar"])) {
     session_destroy();
     header('location: login.php');
@@ -80,6 +85,16 @@ try { // Bloque de código que puede tener excepciones en el objeto PDO
                 border-radius: 10px;
                 border: 2px solid #E72727;
             }
+            #botonEditar{
+                margin:20px;
+                text-align: center;
+                color: #6100FF; 
+                width: 120px; 
+                height: 40px; 
+                font-size: 10pt;
+                border-radius: 10px;
+                border: 2px solid #6100FF;
+            }
         </style>
     </head>
 
@@ -115,7 +130,7 @@ try { // Bloque de código que puede tener excepciones en el objeto PDO
                                     if ($_COOKIE['idioma'] === "en") {
                             ?>        
                                     <h3>User accepted</h3>
-                                    <h3>¡Welcome <?php echo $descUsuario; ?>!</h3>
+                                    <h3>Welcome <?php echo $descUsuario; ?>!</h3>
                                    <?php
                                     if ($_SESSION['ultimaConexion212'] === null) {
                                         echo "<h3>This is the first time you connect.</h3>";
@@ -127,8 +142,9 @@ try { // Bloque de código que puede tener excepciones en el objeto PDO
                                     <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
                                         <div class="obligatorio">
 
-                                            <a href="detalle.php"><input type="button" id="botonAceptar" name="detalle" value="Detail"></a>
-                                            <a href="login.php"><input type="button" id="botonCancelar" name="cerrar" value="Log Out"></a>
+                                            <input type="submit" id="botonAceptar" name="detalle" value="Detail">
+                                            <input type="submit" id="botonEditar" name="editar" value="Edit profil"><br><br>
+                                            <input type="submit" id="botonCancelar" name="cerrar" value="Log Out">
                                         </div>
                                     </form>          
                             <?php    
@@ -136,7 +152,7 @@ try { // Bloque de código que puede tener excepciones en el objeto PDO
                                     } else if ($_COOKIE['idioma'] === "fr") { 
                             ?>        
                                     <h3>Utilisateur accepté</h3>
-                                    <h3>¡Bienvenue <?php echo $descUsuario; ?>!</h3>
+                                    <h3>Bienvenue <?php echo $descUsuario; ?>!</h3>
                                    <?php
                                     if ($_SESSION['ultimaConexion212'] === null) {
                                         echo "<h3>C'est la première fois que vous vous connectez.</h3>";
@@ -148,8 +164,9 @@ try { // Bloque de código que puede tener excepciones en el objeto PDO
                                     <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
                                         <div class="obligatorio">
 
-                                            <a href="detalle.php"><input type="button" id="botonAceptar" name="detalle" value="Detail"></a>
-                                            <a href="login.php"><input type="button" id="botonCancelar" name="cerrar" value="Fermer session"></a>
+                                            <input type="submit" id="botonAceptar" name="detalle" value="Detail">
+                                            <input type="submit" id="botonEditar" name="editar" value="Editer profil"><br><br>
+                                            <input type="submit" id="botonCancelar" name="cerrar" value="Fermer session">
                                         </div>
                                     </form>             
                             <?php            
@@ -170,8 +187,9 @@ try { // Bloque de código que puede tener excepciones en el objeto PDO
                                         <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
                                             <div class="obligatorio">
 
-                                                <a href="detalle.php"><input type="button" id="botonAceptar" name="detalle" value="Detalle"></a>
-                                                <a href="login.php"><input type="button" id="botonCancelar" name="cerrar" value="Cerrar sesion"></a>
+                                                <input type="submit" id="botonAceptar" name="detalle" value="Detalle">
+                                                <input type="submit" id="botonEditar" name="editar"  value="Editar Perfil"><br><br>
+                                                <input type="submit" id="botonCancelar" name="cerrar" value="Cerrar sesion">
                                             </div>
                                         </form>        
                              <?php                       
@@ -179,9 +197,6 @@ try { // Bloque de código que puede tener excepciones en el objeto PDO
                                 } else if ($_COOKIE['idioma'] === "es") {
                                 }
                             ?>
-                                            
-                                            
-                        
                     </div> 
                 </article>
             </section>

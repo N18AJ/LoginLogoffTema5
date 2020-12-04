@@ -1,4 +1,10 @@
 <?php
+
+if (isset($_POST["registrar"])) {
+    header('Location: registrar.php');
+    exit;
+}
+
         //datos para la conexion de la base de datos
         include ("../config/confDB.php");
         require '../core/libreriaValidacion.php'; //Importamos la libreria de validacion
@@ -140,6 +146,16 @@ else{
                 border-radius: 10px;
                 border: 2px solid #18B618;
             }
+            #botonResgistro{
+                margin:20px;
+                text-align: center;
+                color: #6100FF; 
+                width: 120px; 
+                height: 40px; 
+                font-size: 10pt;
+                border-radius: 10px;
+                border: 2px solid #6100FF;
+            }
         </style>
     </head>
 
@@ -202,6 +218,7 @@ else{
 
                                         <div class="obligatorio">               
                                         <input type="submit" id="botonAceptar" name="enviar" value="LOG IN">
+                                        <input type="submit" class="icono_atras" id="botonResgistro" name="registrar" value="TO REGISTER"></a>
                                         </div>        
                                         
                                 <?php    
@@ -229,6 +246,7 @@ else{
 
                                         <div class="obligatorio">               
                                         <input type="submit" id="botonAceptar" name="enviar" value="S'IDENTIFIER">
+                                        <input type="submit" class="icono_atras" id="botonResgistro" name="registrar" value="ENREGISTRER"></a>
                                         </div>    
                                         
                                 <?php            
@@ -256,12 +274,11 @@ else{
 
                                             <div class="obligatorio">               
                                             <input type="submit" id="botonAceptar" name="enviar" value="INICIAR SESION">
+                                            <input type="submit" class="icono_atras" id="botonResgistro" name="registrar" value="REGISTRAR">
                                             </div>        
                                  <?php                       
                                             }
-                                    } else if ($_COOKIE['idioma'] === "es"){
-                                        echo '<a href="#" class="seleccionado"><legend><h2>Elija un idioma</h2></legend></a>';
-                                    }
+                                    } 
                                 ?>                 
                             </fieldset>
                         </form>
