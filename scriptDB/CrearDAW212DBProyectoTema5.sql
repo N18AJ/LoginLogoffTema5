@@ -14,6 +14,7 @@
         T02_FechaCreacionDepartamento int NOT null,
         T02_VolumenNegocio float NOT null
     )ENGINE = INNODB;
+
     CREATE TABLE IF NOT EXISTS T01_Usuario(
         T01_CodUsuario varchar(15) PRIMARY KEY,
         T01_DescUsuario varchar(250) NOT null,
@@ -28,7 +29,7 @@
     CREATE USER IF NOT EXISTS 'usuarioDAW212DBProyectoTema5'@'%' identified BY 'paso'; 
 
 -- Dar permisos al usuario --
-    GRANT ALL PRIVILEGES ON DAW212DBProyectoTema5.* TO 'usuarioDAW212DBProyectoTema5'@'%'; 
+    GRANT ALL PRIVILEGES ON T02_DAW212DBProyectoTema5.* TO 'usuarioDAW212DBProyectoTema5'@'%'; 
 
 -- Hacer el flush privileges, por si acaso --
     FLUSH PRIVILEGES;
